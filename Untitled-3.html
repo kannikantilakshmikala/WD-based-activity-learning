@@ -1,0 +1,1358 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NutriLife | Healthy Food & Nutrition</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f7faf5;
+  color: #25372c;
+  line-height: 1.6;
+}
+
+:root {
+  --green: #34784a;
+  --dark-green: #204b30;
+  --light-green: #e8f4e7;
+  --orange: #f0a34a;
+  --muted: #738074;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: white;
+  box-shadow: 0 3px 15px #1d442010;
+}
+
+.navbar {
+  max-width: 1200px;
+  margin: auto;
+  padding: 16px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo {
+  color: var(--green);
+  font-size: 27px;
+  font-weight: 800;
+}
+
+.logo span {
+  color: var(--orange);
+}
+
+.nav-links {
+  display: flex;
+  gap: 23px;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #344639;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.nav-links a:hover {
+  color: var(--green);
+}
+
+.nav-button {
+  background: var(--green);
+  color: white;
+  padding: 11px 17px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Hero */
+.hero {
+  max-width: 1200px;
+  margin: 28px auto;
+  padding: 55px 45px;
+  border-radius: 22px;
+  background: linear-gradient(120deg, #e5f3dc, #fff3df);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  overflow: hidden;
+}
+
+.hero-content {
+  max-width: 600px;
+}
+
+.eyebrow {
+  display: inline-block;
+  padding: 7px 13px;
+  border-radius: 30px;
+  background: #d1e9cf;
+  color: var(--dark-green);
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-bottom: 17px;
+}
+
+.hero h1 {
+  font-size: clamp(35px, 5vw, 56px);
+  line-height: 1.15;
+  margin-bottom: 18px;
+}
+
+.hero h1 span {
+  color: var(--green);
+}
+
+.hero p {
+  color: #657568;
+  margin-bottom: 25px;
+  max-width: 500px;
+}
+
+.primary-button {
+  display: inline-block;
+  padding: 13px 23px;
+  border-radius: 8px;
+  background: var(--green);
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.primary-button:hover {
+  background: var(--dark-green);
+}
+
+.hero-art {
+  font-size: 145px;
+  line-height: 1;
+}
+
+/* Statistics */
+.stats {
+  max-width: 1100px;
+  margin: 35px auto;
+  padding: 0 22px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.stat-card {
+  padding: 22px;
+  text-align: center;
+  background: white;
+  border-radius: 13px;
+  box-shadow: 0 4px 16px #204b3009;
+}
+
+.stat-card h2 {
+  color: var(--green);
+  font-size: 27px;
+}
+
+.stat-card p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* General sections */
+.section {
+  max-width: 1200px;
+  margin: 55px auto;
+  padding: 0 22px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.section-heading h2 {
+  font-size: 29px;
+  line-height: 1.3;
+}
+
+.section-heading p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.green-text {
+  color: var(--green);
+}
+
+/* Categories */
+.categories {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 15px;
+}
+
+.category-card {
+  border: 2px solid transparent;
+  background: white;
+  border-radius: 13px;
+  padding: 19px 10px;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.category-card:hover,
+.category-card.active {
+  border-color: var(--green);
+  background: var(--light-green);
+}
+
+.category-icon {
+  font-size: 34px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.category-card h3 {
+  font-size: 13px;
+}
+
+/* Recipe grid */
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 23px;
+}
+
+.recipe-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 22px #204b300b;
+  transition: transform 0.2s;
+}
+
+.recipe-card:hover {
+  transform: translateY(-5px);
+}
+
+.recipe-image {
+  position: relative;
+  height: 220px;
+  background: #e8eee4;
+}
+
+.recipe-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.recipe-tag {
+  position: absolute;
+  top: 13px;
+  left: 13px;
+  padding: 6px 10px;
+  background: #ffffffed;
+  color: var(--dark-green);
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.recipe-info {
+  padding: 19px;
+}
+
+.recipe-info h3 {
+  font-size: 19px;
+  margin: 7px 0;
+}
+
+.recipe-info > p {
+  color: var(--muted);
+  font-size: 13px;
+  min-height: 42px;
+}
+
+.recipe-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 15px 0;
+  font-size: 12px;
+  color: #617363;
+}
+
+.calorie {
+  color: var(--green);
+  font-weight: bold;
+}
+
+.recipe-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.recipe-bottom span {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.recipe-button {
+  border: none;
+  border-radius: 7px;
+  padding: 10px 14px;
+  background: var(--green);
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.recipe-button:hover {
+  background: var(--dark-green);
+}
+
+.no-results {
+  display: none;
+  padding: 25px;
+  text-align: center;
+  color: var(--muted);
+  grid-column: 1 / -1;
+}
+
+/* Meal plan */
+.meal-plan {
+  padding: 32px;
+  border-radius: 17px;
+  background: #e9f3e5;
+}
+
+.meal-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.meal-table th,
+.meal-table td {
+  padding: 17px;
+  text-align: left;
+  border-bottom: 1px solid #edf1e9;
+}
+
+.meal-table th {
+  background: var(--dark-green);
+  color: white;
+  font-size: 14px;
+}
+
+.meal-table td {
+  font-size: 14px;
+}
+
+.meal-table tr:last-child td {
+  border-bottom: none;
+}
+
+.meal-type {
+  font-weight: bold;
+  color: var(--green);
+}
+
+/* Nutrition tips */
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.tip-card {
+  background: white;
+  border-radius: 14px;
+  padding: 25px;
+  box-shadow: 0 4px 18px #204b3008;
+}
+
+.tip-icon {
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+
+.tip-card h3 {
+  margin-bottom: 9px;
+  font-size: 18px;
+}
+
+.tip-card p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* Ingredient panel */
+.ingredient-panel {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 30px;
+  align-items: center;
+  padding: 35px;
+  background: white;
+  border-radius: 18px;
+  box-shadow: 0 5px 20px #204b3009;
+}
+
+.ingredient-art {
+  font-size: 110px;
+  text-align: center;
+  background: var(--light-green);
+  border-radius: 15px;
+  padding: 35px 10px;
+}
+
+.ingredient-panel h3 {
+  font-size: 23px;
+  margin-bottom: 12px;
+}
+
+.ingredient-panel p {
+  color: var(--muted);
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.ingredient-list {
+  list-style: none;
+}
+
+.ingredient-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid #edf1e9;
+  font-size: 14px;
+}
+
+.ingredient-list li::before {
+  content: "✓ ";
+  color: var(--green);
+  font-weight: bold;
+}
+
+/* Newsletter */
+.newsletter {
+  background: var(--dark-green);
+  color: white;
+  text-align: center;
+  padding: 48px 20px;
+}
+
+.newsletter h2 {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.newsletter p {
+  color: #d2e5d4;
+  margin-bottom: 20px;
+}
+
+.newsletter form {
+  display: flex;
+  gap: 9px;
+  max-width: 430px;
+  margin: auto;
+}
+
+.newsletter input {
+  flex: 1;
+  min-width: 0;
+  padding: 13px;
+  border: none;
+  border-radius: 7px;
+}
+
+.newsletter button {
+  background: var(--orange);
+  color: #26392a;
+  border: none;
+  border-radius: 7px;
+  padding: 13px 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+footer {
+  background: #173b25;
+  color: white;
+  padding: 27px 22px;
+  text-align: center;
+  font-size: 13px;
+}
+
+/* Recipe modal */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  padding: 20px;
+  background: #0008;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 520px;
+  max-height: 85vh;
+  overflow-y: auto;
+  background: white;
+  padding: 27px;
+  border-radius: 15px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.close-button {
+  border: none;
+  background: none;
+  font-size: 27px;
+  cursor: pointer;
+}
+
+.modal-content h3 {
+  margin: 18px 0 8px;
+  color: var(--green);
+}
+
+.modal-content ul,
+.modal-content ol {
+  padding-left: 22px;
+  color: #536454;
+  font-size: 14px;
+}
+
+.modal-content li {
+  padding: 4px 0;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    margin: 20px;
+  }
+
+  .categories {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .recipe-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tips-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .navbar {
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    font-size: 23px;
+  }
+
+  .nav-links {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+  }
+
+  .nav-button {
+    padding: 9px 12px;
+    font-size: 12px;
+  }
+
+  .hero {
+    padding: 32px 23px;
+    min-height: 280px;
+  }
+
+  .hero h1 {
+    font-size: 37px;
+  }
+
+  .hero-art {
+    font-size: 70px;
+  }
+
+  .stats {
+    gap: 9px;
+  }
+
+  .stat-card {
+    padding: 14px 7px;
+  }
+
+  .stat-card h2 {
+    font-size: 20px;
+  }
+
+  .stat-card p {
+    font-size: 11px;
+  }
+
+  .section-heading {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .section-heading h2 {
+    font-size: 25px;
+  }
+
+  .recipe-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 13px;
+  }
+
+  .recipe-image {
+    height: 145px;
+  }
+
+  .recipe-info {
+    padding: 12px;
+  }
+
+  .recipe-info h3 {
+    font-size: 16px;
+  }
+
+  .recipe-info > p {
+    min-height: 60px;
+  }
+
+  .recipe-meta {
+    gap: 6px;
+    flex-direction: column;
+  }
+
+  .recipe-bottom {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .recipe-button {
+    width: 100%;
+  }
+
+  .tips-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ingredient-panel {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  .ingredient-art {
+    font-size: 75px;
+    padding: 20px;
+  }
+
+  .meal-plan {
+    padding: 13px;
+    overflow-x: auto;
+  }
+
+  .meal-table {
+    min-width: 530px;
+  }
+}
+
+@media (max-width: 390px) {
+  .recipe-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .recipe-image {
+    height: 220px;
+  }
+
+  .hero-art {
+    display: none;
+  }
+
+  .categories {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .newsletter form {
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <nav class="navbar">
+    <div class="logo">Nutri<span>Life.</span></div>
+
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#recipes">Recipes</a>
+      <a href="#meal-plan">Meal Plans</a>
+      <a href="#nutrition">Nutrition Tips</a>
+    </div>
+
+    <a href="#recipes" class="nav-button">Explore Recipes</a>
+  </nav>
+</header>
+
+<!-- Hero section -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <span class="eyebrow">EAT WELL • FEEL GREAT</span>
+    <h1>Healthy Eating,<br><span>Happy Living.</span></h1>
+    <p>
+      Discover wholesome recipes, balanced meal ideas, and simple
+      nutrition tips to make healthy eating enjoyable every day.
+    </p>
+    <a href="#recipes" class="primary-button">Explore Healthy Recipes →</a>
+  </div>
+  <div class="hero-art" aria-hidden="true">🥗</div>
+</section>
+
+<!-- Statistics -->
+<section class="stats">
+  <div class="stat-card">
+    <h2>30+</h2>
+    <p>Healthy Recipes</p>
+  </div>
+  <div class="stat-card">
+    <h2>7 Days</h2>
+    <p>Meal Planning Ideas</p>
+  </div>
+  <div class="stat-card">
+    <h2>100%</h2>
+    <p>Food Inspiration</p>
+  </div>
+</section>
+
+<!-- Categories -->
+<section class="section" id="categories">
+  <div class="section-heading">
+    <div>
+      <h2>Explore Food Categories</h2>
+      <p>Find delicious ideas for every meal.</p>
+    </div>
+  </div>
+
+  <div class="categories">
+    <button class="category-card active" data-category="All">
+      <span class="category-icon">🍽️</span>
+      <h3>All Recipes</h3>
+    </button>
+
+    <button class="category-card" data-category="Breakfast">
+      <span class="category-icon">🥣</span>
+      <h3>Breakfast</h3>
+    </button>
+
+    <button class="category-card" data-category="Lunch">
+      <span class="category-icon">🥗</span>
+      <h3>Lunch</h3>
+    </button>
+
+    <button class="category-card" data-category="Dinner">
+      <span class="category-icon">🍲</span>
+      <h3>Dinner</h3>
+    </button>
+
+    <button class="category-card" data-category="Snacks">
+      <span class="category-icon">🥜</span>
+      <h3>Snacks</h3>
+    </button>
+
+    <button class="category-card" data-category="Drinks">
+      <span class="category-icon">🥤</span>
+      <h3>Drinks</h3>
+    </button>
+  </div>
+</section>
+
+<!-- Recipes -->
+<section class="section" id="recipes">
+  <div class="section-heading">
+    <div>
+      <h2>Popular <span class="green-text">Healthy Recipes</span></h2>
+      <p>Simple ingredients, nourishing meals, and great flavors.</p>
+    </div>
+    <p id="recipeCount">6 recipes</p>
+  </div>
+
+  <div class="recipe-grid" id="recipeGrid">
+
+    <article class="recipe-card"
+      data-category="Breakfast"
+      data-name="Berry Oatmeal">
+      <div class="recipe-image">
+        <span class="recipe-tag">HIGH FIBER</span>
+        <img src="https://images.unsplash.com/photo-1517673132405-a56a62b18caf?auto=format&fit=crop&w=700&q=80"
+          alt="Oatmeal with berries">
+      </div>
+      <div class="recipe-info">
+        <h3>Berry Oatmeal Bowl</h3>
+        <p>Whole-grain oats topped with berries, seeds, and creamy yogurt.</p>
+        <div class="recipe-meta">
+          <span>⏱ 10 min</span>
+          <span>🍽️ 1 serving</span>
+          <span class="calorie">~320 kcal</span>
+        </div>
+        <div class="recipe-bottom">
+          <span>Easy preparation</span>
+          <button class="recipe-button" data-recipe="oatmeal">View Recipe</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="recipe-card"
+      data-category="Lunch"
+      data-name="Rainbow Salad">
+      <div class="recipe-image">
+        <span class="recipe-tag">VEGETARIAN</span>
+        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=700&q=80"
+          alt="Fresh rainbow vegetable salad">
+      </div>
+      <div class="recipe-info">
+        <h3>Rainbow Veggie Salad</h3>
+        <p>A colorful mix of fresh vegetables, chickpeas, and lemon dressing.</p>
+        <div class="recipe-meta">
+          <span>⏱ 15 min</span>
+          <span>🍽️ 2 servings</span>
+          <span class="calorie">~280 kcal</span>
+        </div>
+        <div class="recipe-bottom">
+          <span>Fresh and crunchy</span>
+          <button class="recipe-button" data-recipe="salad">View Recipe</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="recipe-card"
+      data-category="Lunch"
+      data-name="Avocado Toast">
+      <div class="recipe-image">
+        <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=700&q=80"
+          alt="Toast with avocado">
+      </div>
+      <div class="recipe-info">
+        <h3>Avocado Wholegrain Toast</h3>
+        <p>Wholegrain toast with avocado, lemon, and freshly cracked pepper.</p>
+        <div class="recipe-meta">
+          <span>⏱ 10 min</span>
+          <span>🍽️ 1 serving</span>
+          <span class="calorie">~290 kcal</span>
+        </div>
+        <div class="recipe-bottom">
+          <span>Healthy fats</span>
+          <button class="recipe-button" data-recipe="toast">View Recipe</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="recipe-card"
+      data-category="Dinner"
+      data-name="Grilled Chicken Bowl">
+      <div class="recipe-image">
+        <span class="recipe-tag">PROTEIN RICH</span>
+        <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=80"
+          alt="Healthy grain bowl">
+      </div>
+      <div class="recipe-info">
+        <h3>Grilled Protein Bowl</h3>
+        <p>A balanced bowl with grains, vegetables, and a protein of choice.</p>
+        <div class="recipe-meta">
+          <span>⏱ 30 min</span>
+          <span>🍽️ 1 serving</span>
+          <span class="calorie">~430 kcal</span>
+        </div>
+        <div class="recipe-bottom">
+          <span>Balanced meal</span>
+          <button class="recipe-button" data-recipe="bowl">View Recipe</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="recipe-card"
+      data-category="Snacks"
+      data-name="Yogurt Fruit Bowl">
+      <div class="recipe-image">
+        <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=700&q=80"
+          alt="Yogurt with fruit">
+      </div>
+      <div class="recipe-info">
+        <h3>Yogurt & Fruit Bowl</h3>
+        <p>Plain yogurt with seasonal fruit, nuts, and a sprinkle of seeds.</p>
+        <div class="recipe-meta">
+          <span>⏱ 5 min</span>
+          <span>🍽️ 1 serving</span>
+          <span class="calorie">~220 kcal</span>
+        </div>
+        <div class="recipe-bottom">
+          <span>Quick snack</span>
+          <button class="recipe-button" data-recipe="yogurt">View Recipe</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="recipe-card"
+      data-category="Drinks"
+      data-name="Green Smoothie">
+      <div class="recipe-image">
+        <span class="recipe-tag">NO ADDED SUGAR</span>
+        <img src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=700&q=80"
+          alt="Fruit smoothie">
+      </div>
+      <div class="recipe-info">
+        <h3>Green Fruit Smoothie</h3>
+        <p>A refreshing blend of fruit, leafy greens, and your choice of milk.</p>
+        <div class="recipe-meta">
+          <span>⏱ 5 min</span>
+          <span>🍽️ 1 glass</span>
+          <span class="calorie">~180 kcal</span>
+        </div>
+        <div class="recipe-bottom">
+          <span>Easy to prepare</span>
+          <button class="recipe-button" data-recipe="smoothie">View Recipe</button>
+        </div>
+      </div>
+    </article>
+
+    <p class="no-results" id="noResults">
+      No recipes in this category yet. Try another category.
+    </p>
+  </div>
+</section>
+
+<!-- Featured ingredients -->
+<section class="section">
+  <div class="section-heading">
+    <div>
+      <h2>Simple, Nutritious Ingredients</h2>
+      <p>Build meals around a variety of nourishing foods.</p>
+    </div>
+  </div>
+
+  <div class="ingredient-panel">
+    <div class="ingredient-art" aria-hidden="true">🥑 🥦</div>
+    <div>
+      <h3>Your Healthy Kitchen Checklist</h3>
+      <p>
+        Keep versatile ingredients ready to make nutritious meals
+        easier throughout the week.
+      </p>
+      <ul class="ingredient-list">
+        <li>Whole grains: oats, brown rice, wholegrain bread</li>
+        <li>Protein foods: lentils, beans, eggs, tofu, yogurt</li>
+        <li>Colorful vegetables: spinach, carrots, broccoli</li>
+        <li>Fresh fruits: apples, bananas, berries, oranges</li>
+        <li>Healthy fats: nuts, seeds, olive oil, avocado</li>
+        <li>Flavor boosters: herbs, spices, lemon, garlic</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Meal plan -->
+<section class="section" id="meal-plan">
+  <div class="section-heading">
+    <div>
+      <h2>A Simple Daily <span class="green-text">Meal Plan</span></h2>
+      <p>An example day of varied, balanced meal ideas.</p>
+    </div>
+  </div>
+
+  <div class="meal-plan">
+    <table class="meal-table">
+      <thead>
+        <tr>
+          <th>Meal</th>
+          <th>Food Ideas</th>
+          <th>Nutrition Focus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="meal-type">Breakfast</td>
+          <td>Oatmeal, fruit, and yogurt</td>
+          <td>Fiber and protein</td>
+        </tr>
+        <tr>
+          <td class="meal-type">Morning Snack</td>
+          <td>An apple and a handful of nuts</td>
+          <td>Fiber and healthy fats</td>
+        </tr>
+        <tr>
+          <td class="meal-type">Lunch</td>
+          <td>Brown rice, dal, and mixed vegetables</td>
+          <td>Carbohydrates and plant protein</td>
+        </tr>
+        <tr>
+          <td class="meal-type">Afternoon Snack</td>
+          <td>Plain yogurt or roasted chickpeas</td>
+          <td>Protein and calcium</td>
+        </tr>
+        <tr>
+          <td class="meal-type">Dinner</td>
+          <td>Vegetable curry, wholegrain roti, and beans</td>
+          <td>Variety and fiber</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Nutrition tips -->
+<section class="section" id="nutrition">
+  <div class="section-heading">
+    <div>
+      <h2>Everyday <span class="green-text">Nutrition Tips</span></h2>
+      <p>Small habits can help support a healthy lifestyle.</p>
+    </div>
+  </div>
+
+  <div class="tips-grid">
+    <article class="tip-card">
+      <div class="tip-icon">🥦</div>
+      <h3>Eat a Variety of Foods</h3>
+      <p>
+        Include vegetables, fruits, whole grains, protein foods,
+        and healthy fats across your meals.
+      </p>
+    </article>
+
+    <article class="tip-card">
+      <div class="tip-icon">💧</div>
+      <h3>Stay Hydrated</h3>
+      <p>
+        Drink water regularly throughout the day. Your needs can
+        vary with activity, weather, and health.
+      </p>
+    </article>
+
+    <article class="tip-card">
+      <div class="tip-icon">🥗</div>
+      <h3>Plan Your Meals</h3>
+      <p>
+        Prepare ingredients in advance to make home-cooked,
+        balanced meals more convenient.
+      </p>
+    </article>
+
+    <article class="tip-card">
+      <div class="tip-icon">🌾</div>
+      <h3>Choose Whole Grains</h3>
+      <p>
+        Try oats, brown rice, whole-wheat roti, or wholegrain
+        bread for more dietary fiber.
+      </p>
+    </article>
+
+    <article class="tip-card">
+      <div class="tip-icon">🍎</div>
+      <h3>Enjoy Whole Fruits</h3>
+      <p>
+        Choose a variety of fresh or frozen fruit as part of
+        your meals and snacks.
+      </p>
+    </article>
+
+    <article class="tip-card">
+      <div class="tip-icon">🍽️</div>
+      <h3>Listen to Your Hunger</h3>
+      <p>
+        Eat mindfully, notice your hunger and fullness cues,
+        and choose portions that suit your needs.
+      </p>
+    </article>
+  </div>
+</section>
+
+<!-- Newsletter -->
+<section class="newsletter">
+  <h2>Fresh Ideas for a Healthier You</h2>
+  <p>Sign up for recipe inspiration and simple nutrition tips.</p>
+
+  <form id="newsletterForm">
+    <input type="email" placeholder="Enter your email address" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  <p>© 2026 NutriLife | Healthy Food & Nutrition</p>
+  <p>Eat well, nourish your body, and enjoy every bite.</p>
+  <p>Nutrition information is approximate and varies by ingredients and serving size.</p>
+</footer>
+
+<!-- Recipe details modal -->
+<div class="modal" id="recipeModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 id="modalTitle">Recipe Details</h2>
+      <button class="close-button" id="closeModal" aria-label="Close recipe">×</button>
+    </div>
+    <p id="modalDescription"></p>
+
+    <h3>Ingredients</h3>
+    <ul id="modalIngredients"></ul>
+
+    <h3>Preparation</h3>
+    <ol id="modalSteps"></ol>
+
+    <p style="margin-top:18px;color:#738074;font-size:12px">
+      Calories are estimates and may vary with ingredient choices and portions.
+    </p>
+  </div>
+</div>
+
+<script>
+const recipes = {
+  oatmeal: {
+    title: "Berry Oatmeal Bowl",
+    description: "Preparation: 10 minutes | Approx. 320 kcal per serving",
+    ingredients: [
+      "½ cup rolled oats",
+      "1 cup milk or fortified plant milk",
+      "½ cup mixed berries",
+      "2 tablespoons plain yogurt",
+      "1 teaspoon chia seeds"
+    ],
+    steps: [
+      "Cook oats with milk according to the package directions.",
+      "Transfer to a bowl and top with berries and yogurt.",
+      "Sprinkle with chia seeds and serve."
+    ]
+  },
+
+  salad: {
+    title: "Rainbow Veggie Salad",
+    description: "Preparation: 15 minutes | Approx. 280 kcal per serving",
+    ingredients: [
+      "2 cups mixed salad vegetables",
+      "½ cup cooked chickpeas",
+      "½ cucumber, chopped",
+      "1 tablespoon olive oil",
+      "Lemon juice, pepper, and herbs"
+    ],
+    steps: [
+      "Wash and chop the vegetables.",
+      "Combine vegetables and chickpeas in a bowl.",
+      "Mix olive oil, lemon juice, and seasonings.",
+      "Toss the dressing with the salad and serve."
+    ]
+  },
+
+  toast: {
+    title: "Avocado Wholegrain Toast",
+    description: "Preparation: 10 minutes | Approx. 290 kcal per serving",
+    ingredients: [
+      "2 slices wholegrain bread",
+      "½ ripe avocado",
+      "A squeeze of lemon juice",
+      "Black pepper",
+      "Optional tomato slices"
+    ],
+    steps: [
+      "Toast the bread until golden.",
+      "Mash avocado with lemon juice and pepper.",
+      "Spread on the toast and add tomato if desired."
+    ]
+  },
+
+  bowl: {
+    title: "Grilled Protein Bowl",
+    description: "Preparation: 30 minutes | Approx. 430 kcal per serving",
+    ingredients: [
+      "¾ cup cooked brown rice or quinoa",
+      "100 g cooked chicken, tofu, or another protein",
+      "1 cup mixed vegetables",
+      "1 teaspoon olive oil",
+      "Lemon juice and herbs"
+    ],
+    steps: [
+      "Cook the grain according to the package directions.",
+      "Cook the protein thoroughly using your preferred method.",
+      "Steam or sauté the vegetables until tender.",
+      "Arrange everything in a bowl and season to taste."
+    ]
+  },
+
+  yogurt: {
+    title: "Yogurt & Fruit Bowl",
+    description: "Preparation: 5 minutes | Approx. 220 kcal per serving",
+    ingredients: [
+      "¾ cup plain yogurt",
+      "½ cup chopped seasonal fruit",
+      "1 tablespoon chopped nuts",
+      "1 teaspoon seeds",
+      "Optional cinnamon"
+    ],
+    steps: [
+      "Spoon yogurt into a bowl.",
+      "Add fruit, nuts, and seeds.",
+      "Sprinkle with cinnamon if desired and enjoy."
+    ]
+  },
+
+  smoothie: {
+    title: "Green Fruit Smoothie",
+    description: "Preparation: 5 minutes | Approx. 180 kcal per serving",
+    ingredients: [
+      "1 small banana",
+      "½ cup leafy greens",
+      "½ cup milk or fortified plant milk",
+      "¼ cup plain yogurt, optional",
+      "Ice cubes as needed"
+    ],
+    steps: [
+      "Wash the leafy greens.",
+      "Add all ingredients to a blender.",
+      "Blend until smooth, adjusting liquid as needed.",
+      "Serve immediately."
+    ]
+  }
+};
+
+// Open recipe details
+document.querySelectorAll("[data-recipe]").forEach(button => {
+  button.addEventListener("click", () => {
+    const recipe = recipes[button.dataset.recipe];
+
+    document.getElementById("modalTitle").textContent = recipe.title;
+    document.getElementById("modalDescription").textContent =
+      recipe.description;
+
+    const ingredientList = document.getElementById("modalIngredients");
+    ingredientList.replaceChildren();
+
+    recipe.ingredients.forEach(ingredient => {
+      const li = document.createElement("li");
+      li.textContent = ingredient;
+      ingredientList.appendChild(li);
+    });
+
+    const stepsList = document.getElementById("modalSteps");
+    stepsList.replaceChildren();
+
+    recipe.steps.forEach(step => {
+      const li = document.createElement("li");
+      li.textContent = step;
+      stepsList.appendChild(li);
+    });
+
+    document.getElementById("recipeModal").classList.add("show");
+  });
+});
+
+// Close recipe details
+document.getElementById("closeModal").addEventListener("click", () => {
+  document.getElementById("recipeModal").classList.remove("show");
+});
+
+document.getElementById("recipeModal").addEventListener("click", event => {
+  if (event.target.id === "recipeModal") {
+    event.currentTarget.classList.remove("show");
+  }
+});
+
+// Filter recipes by category
+const categoryButtons = document.querySelectorAll(".category-card");
+const recipeCards = document.querySelectorAll(".recipe-card");
+
+categoryButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    const category = button.dataset.category;
+    let visible = 0;
+
+    categoryButtons.forEach(item => item.classList.remove("active"));
+    button.classList.add("active");
+
+    recipeCards.forEach(card => {
+      const show =
+        category === "All" || card.dataset.category === category;
+
+      card.style.display = show ? "" : "none";
+      if (show) visible++;
+    });
+
+    document.getElementById("recipeCount").textContent =
+      visible + (visible === 1 ? " recipe" : " recipes");
+
+    document.getElementById("noResults").style.display =
+      visible === 0 ? "block" : "none";
+  });
+});
+
+// Demo newsletter subscription
+document.getElementById("newsletterForm").addEventListener("submit", event => {
+  event.preventDefault();
+  alert("Thank you for subscribing to NutriLife!");
+  event.target.reset();
+});
+</script>
+
+</body>
+</html>
